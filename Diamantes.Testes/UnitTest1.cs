@@ -8,11 +8,11 @@ namespace Diamantes.Testes
     public class UnitTest1
     {
         ConstruirDiamante construir = new ConstruirDiamante();
-        
+
         [TestMethod]
         public void DeveRetornarDiamanteZ()
         {
-            string valorEsperado = 
+            string valorEsperado =
                 "                         A\n" +
                 "                        B B\n" +
                 "                       C   C\n" +
@@ -65,7 +65,7 @@ namespace Diamantes.Testes
                 "                        B B\n" +
                 "                         A\n";
 
-            Assert.AreEqual(construir.PrintaDiamante('Z'), valorEsperado);
+            Assert.AreEqual(construir.RetornaDiamante('Z'), valorEsperado);
 
         }
         [TestMethod]
@@ -83,7 +83,7 @@ namespace Diamantes.Testes
                 "   B B\n" +
                 "    A\n";
 
-            Assert.AreEqual(construir.PrintaDiamante('E'), valorEsperado);
+            Assert.AreEqual(construir.RetornaDiamante('E'), valorEsperado);
 
         }
         [TestMethod]
@@ -97,8 +97,14 @@ namespace Diamantes.Testes
                 " B B\n" +
                 "  A\n";
 
-            Assert.AreEqual(construir.PrintaDiamante('C'), valorEsperado);
+            Assert.AreEqual(construir.RetornaDiamante('C'), valorEsperado);
 
+        }
+        [TestMethod]
+        public void DeveRetornarDiamanteA()
+        {
+            string valorEsperado = "A\n";
+            Assert.AreEqual(construir.RetornaDiamante('A'), valorEsperado);
         }
 
     }

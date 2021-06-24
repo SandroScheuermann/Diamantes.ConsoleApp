@@ -12,8 +12,12 @@ namespace Diamantes.ConsoleApp
         {
             ConstruirDiamante construir = new ConstruirDiamante();
 
-            for (int i = 65; i <= 90; i++)
-                Console.WriteLine(construir.PrintaDiamante((char)i));
+            Console.Write("Digite a letra para construir o diamante : ");
+
+            char letraSelecionada = Convert.ToChar(Console.ReadLine().ToUpper());
+            Console.WriteLine();
+
+            Console.WriteLine(construir.RetornaDiamante(letraSelecionada));
             Console.Read();
         }
 

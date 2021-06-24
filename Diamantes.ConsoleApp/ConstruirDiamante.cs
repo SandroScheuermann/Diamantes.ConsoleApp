@@ -1,26 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diamantes.ConsoleApp
+﻿namespace Diamantes.ConsoleApp
 {
     public class ConstruirDiamante
     {
-        public string PrintaDiamante(char letra)
+        string espacoEsquerda = "";
+        string espacoMeio = " ";
+        string diamante = "";
+
+        public string RetornaDiamante(char letra)
         {
-            int diferencaLetras = (int)letra - 65;
-            string espacoEsquerda = "";
-            string espacoMeio = " ";
-            string diamante = "";
-
-            for (int i = diferencaLetras; i > 0; i--)
+            ObterEspacosDaMargem(letra);
+            MontaParteDeCima(letra);
+            MontaParteDeBaixo(letra);
+            return diamante;
+        }
+        private void ObterEspacosDaMargem(char letra)
+        {
+            for (int i = letra - 'A'; i > 0; i--)
                 espacoEsquerda += " ";
-
-            for (int i = 65; i <= letra; i++)
+        }
+        private void MontaParteDeBaixo(char letra)
+        {
+            for (int j = letra - 1; j >= 'A'; j--)
             {
-                if (i == 65)
+                if (j == 'A')
+                {
+                    espacoEsquerda += " ";
+                    diamante += espacoEsquerda + (char)j + "\n";
+                    continue;
+                }
+                espacoEsquerda += " ";
+                espacoMeio = espacoMeio.Substring(0, espacoMeio.Length - 2);
+                diamante += espacoEsquerda + (char)j + espacoMeio + (char)j + "\n";
+            }
+        }
+        private void MontaParteDeCima(char letra)
+        {
+            for (int i = 'A'; i <= letra; i++)
+            {
+                if (i == 'A')
                 {
                     diamante += espacoEsquerda + (char)i + "\n";
                     continue;
@@ -29,31 +46,8 @@ namespace Diamantes.ConsoleApp
                 diamante += espacoEsquerda + (char)i + espacoMeio + (char)i + "\n";
                 espacoMeio += "  ";
             }
-
             if (espacoMeio.Length > 2)
                 espacoMeio = espacoMeio.Substring(0, espacoMeio.Length - 2);
-
-            for (int j = (int)letra - 1; j >= 65; j--)
-            {
-                if (j == 65)
-                {
-                    espacoEsquerda += " ";
-                    diamante += espacoEsquerda + (char)j + "\n";
-                    continue;
-                }
-                espacoEsquerda += " ";
-
-                if (espacoMeio.Length == 1)
-                {
-                    espacoMeio = "";
-                    continue;
-                }
-                espacoMeio = espacoMeio.Substring(0, espacoMeio.Length - 2);
-                diamante += espacoEsquerda + (char)j + espacoMeio + (char)j + "\n";
-            }
-
-            return diamante;
         }
-
     }
 }
